@@ -1,42 +1,98 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+@font-face {
+    font-family: 'Caviar Dreams';
+    src: url('src/assets/CaviarDreams_Bold.ttf') format('truetype');
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Caviar Dreams', sans-serif;
+    background-color: #F5F5F5;
+    color: #707070;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.header {
+    display: flex;
+    justify-content: center;
 }
 
-.card {
-  padding: 2em;
+.hero {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.read-the-docs {
-  color: #888;
+.hero-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 50vh;
+    z-index: 1;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+}
+
+.url-form {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    max-width: 650px;
+    padding: 2rem;
+}
+
+.form-inner {
+    position: relative;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 5px solid rgba(255, 255, 255, 0.75);
+    border-radius: 80px;
+    padding: 0.5rem;
+}
+
+.form-inner input {
+    width: calc(100% - 100px);
+    padding: 1rem;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 1rem;
+    font-family: 'Caviar Dreams', sans-serif;
+}
+
+.form-inner button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 1rem 2rem;
+    background-color: rgba(189, 189, 189, 0.2);
+    border: none;
+    border-radius: 80px;
+    cursor: pointer;
+    outline: none;
+    font-size: 1rem;
+    font-family: 'Caviar Dreams', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.form-inner input::placeholder {
+    color: #000000;
+    opacity: 1;
+}
+
+.form-inner button:hover {
+    background-color: rgb(112, 112, 112, 0.3);
 }

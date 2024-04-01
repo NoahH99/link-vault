@@ -48,7 +48,7 @@ The URL shortener application exposes the following API endpoints:
 - **Request Body:**
    ```json
   {
-    "url": "https://example-long-url.com",
+    "originalUrl": "https://example-long-url.com",
     "shortCode": "3zXFC", // Optional
     "expirationDate": "YYYY-MM-DD HH:MM:SS" // Optional
   }
@@ -56,7 +56,7 @@ The URL shortener application exposes the following API endpoints:
 - **Response Body:**
    ```json
   {
-    "url": "https://example-long-url.com",
+    "originalUrl": "https://example-long-url.com",
     "shortCode": "3zXFC",
     "expirationDate": "YYYY-MM-DD HH:MM:SS"
   }
@@ -76,7 +76,7 @@ The URL shortener application exposes the following API endpoints:
     "totalClicks": 20,
     "topClickedURLs": [
       {
-        "url": "https://example-long-url.com",
+        "originalUrl": "https://example-long-url.com",
         "shortCode": "3zXFC",
         "expirationDate": "YYYY-MM-DD HH:MM:SS",
         "createdDate": "YYYY-MM-DD HH:MM:SS",
@@ -84,7 +84,7 @@ The URL shortener application exposes the following API endpoints:
         "clicks": 15
       },
       {
-        "url": "https://another-example-long-url.com",
+        "originalUrl": "https://another-example-long-url.com",
         "shortCode": "example",
         "expirationDate": "YYYY-MM-DD HH:MM:SS",
         "createdDate": "YYYY-MM-DD HH:MM:SS",
@@ -102,7 +102,7 @@ The URL shortener application exposes the following API endpoints:
 - **Response Body:**
    ```json
   {
-    "url": "https://example-long-url.com",
+    "originalUrl": "https://example-long-url.com",
     "shortCode": "3zXFC",
     "expirationDate": "YYYY-MM-DD HH:MM:SS",
     "createdDate": "YYYY-MM-DD HH:MM:SS",

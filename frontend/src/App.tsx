@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import {ChangeEvent, FormEvent, useState} from "react";
+
+interface ApiResponse {
+
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [url, setUrl] = useState('');
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        try {
+            const response = await fetch('http://localhost:8080/api/url/shorten', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({url: url}),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to shorten URL');
+            }
+
+            const data: ApiResponse = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setUrl(event.target.value);
+    };
+
+    return (
+        <>
+            <div className="app">
+                <div className="header">
+                    <p>localhost/shorten</p>
+                </div>
+                <div className="overlay"></div>
+                <div className="hero">
+                    <div className="hero-text">SHORTEN</div>
+                    <form className="url-form" onSubmit={handleSubmit}>
+                        <div className="form-inner">
+                            <input
+                                type="url"
+                                placeholder="enter your url here"
+                                value={url}
+                                onChange={handleChange}
+                            />
+                            <button type="submit">lets's go</button>
+                        </div>
+                    </form>
+                </div>
+                <div className="footer">
+                    <p>check out our api</p>
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default App

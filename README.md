@@ -1,26 +1,11 @@
-# 355 Project Phase 1
-
-## Use Cases
-
-
-
-## Progress Made
-
-## Difficulties
-
-## Test Cases
-
-
-
-
-
-
-
- 
-
 # URL Shortener
 
 This is a simple tool for shortening long URLs into shorter, more manageable links. It allows users to generate short URLs that redirect to the original long URLs, making it easier to share links in emails, social media, or other platforms.
+
+## Sprint Details
+- [Sprint 1](https://github.com/NoahH99/cmsc355-url-shortener/blob/develop/SPRINT1.md)
+- [Sprint 2](https://github.com/NoahH99/cmsc355-url-shortener/blob/develop/SPRINT2.md)
+- [Sprint 3](https://github.com/NoahH99/cmsc355-url-shortener/blob/develop/SPRINT3.md)
 
 ## Features
 

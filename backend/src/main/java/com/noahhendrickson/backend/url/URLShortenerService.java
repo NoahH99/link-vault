@@ -17,13 +17,8 @@ public class URLShortenerService {
     }
 
     public ResponseEntity<URLShortenerDTO> shortenURL(URLShortenerDTO request) {
-        String shortCode = request.getShortCode();
-
-        if (doesSuppliedShortCodeExists(shortCode)) throw new InvalidRequestException("Short code already exists.");
-        if (isShortCodeNotValid(shortCode)) shortCode = generateShortCode();
-
+        String shortCode = new URLShortenerValidator(shortenerRepository).validate(request);
         ShortenedURL url = buildShortenedURL(request, shortCode);
-
         shortenerRepository.save(url);
 
         return new ResponseEntity<>(new URLShortenerDTO(
@@ -72,25 +67,6 @@ public class URLShortenerService {
                 ),
                 HttpStatus.OK
         );
-    }
-
-    private boolean doesSuppliedShortCodeExists(String shortCode) {
-        return shortCode != null && !shortCode.isBlank() && shortenerRepository.existsShortenedURLByShortCode(shortCode);
-    }
-
-    private boolean isShortCodeNotValid(String shortCode) {
-        return shortCode == null || shortCode.isBlank();
-    }
-
-    private String generateShortCode() {
-        ShortCodeGenerator generator = new ShortCodeGenerator();
-        String code = generator.generateRandomFiveCharacaterString();
-
-        while (shortenerRepository.existsShortenedURLByShortCode(code)) {
-            code = generator.generateRandomFiveCharacaterString();
-        }
-
-        return code;
     }
 
     private ShortenedURL buildShortenedURL(URLShortenerDTO request, String shortCode) {

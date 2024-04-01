@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'Caviar Dreams';
-    src: url('src/assets/CaviarDreams_Bold.ttf') format('truetype');
+    src: url('/src/assets/CaviarDreams_Bold.ttf') format('truetype');
 }
 
 body, html {

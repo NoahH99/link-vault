@@ -1,14 +1,17 @@
 import './App.css'
-import React, {ChangeEvent, useState} from 'react';
+import {ChangeEvent, FormEvent, useState} from "react";
+
+interface ApiResponse {
+
+}
 
 function App() {
     const [url, setUrl] = useState('');
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
         try {
-            const response = await fetch('https://backend/api/url/shorten', {
+            const response = await fetch('http://localhost:8080/api/url/shorten', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -16,17 +19,18 @@ function App() {
                 body: JSON.stringify({url: url}),
             });
 
-            if (response.ok) {
-                console.log('URL submitted successfully!');
-            } else {
-                console.error('Failed to submit URL');
+            if (!response.ok) {
+                throw new Error('Failed to shorten URL');
             }
+
+            const data: ApiResponse = await response.json();
+            console.log(data);
         } catch (error) {
-            console.error('Error submitting URL:', error);
+            console.error('Error:', error);
         }
     };
 
-    const handleChange = (event: ChangeEvent<HTMLFormElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setUrl(event.target.value);
     };
 
@@ -45,7 +49,7 @@ function App() {
                                 type="url"
                                 placeholder="enter your url here"
                                 value={url}
-                                onChange={() => handleChange}
+                                onChange={handleChange}
                             />
                             <button type="submit">lets's go</button>
                         </div>

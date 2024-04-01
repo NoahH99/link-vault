@@ -45,7 +45,7 @@ public class URLShortenerService {
                 new GlobalAnalyticsDTO(
                         shortenerRepository.countShortenedURLs(),
                         shortenerRepository.sumClicks(),
-                        shortenerRepository.findTop10ByOrderByClicksDesc()
+                        shortenerRepository.findTop10URLsByOrderByClicksDesc()
                 ),
                 HttpStatus.OK
         );

@@ -13,12 +13,12 @@ public interface URLShortenerRepository extends JpaRepository<ShortenedURL, Long
 
     boolean existsShortenedURLByShortCode(String shortCode);
 
-    @Query("SELECT SUM(url.clicks) FROM ShortenedURL url")
+    @Query("SELECT COALESCE(SUM(url.clicks), 0) FROM ShortenedURL url")
     long sumClicks();
 
-    @Query("SELECT COUNT(*) FROM ShortenedURL")
+    @Query("SELECT COALESCE(COUNT(*), 0) FROM ShortenedURL")
     long countShortenedURLs();
 
     @Query("SELECT url FROM ShortenedURL url  WHERE url.clicks IN (SELECT url.clicks FROM ShortenedURL url ORDER BY url.clicks DESC LIMIT 10) ORDER BY url.clicks DESC")
-    List<ShortenedURL> findTop10ByOrderByClicksDesc();
+    List<ShortenedURL> findTop10URLsByOrderByClicksDesc();
 }

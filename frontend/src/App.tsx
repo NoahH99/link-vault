@@ -1,5 +1,8 @@
 import './App.css'
 import {ChangeEvent, FormEvent, useState} from "react";
+import {
+    Link,
+  } from "react-router-dom";
 
 interface ApiResponse {
     originalUrl: string,
@@ -64,7 +67,7 @@ function App() {
                     )}
                 </div>
                 <div className="footer">
-                    <p>check out our api</p>
+                    <Link to="/info">check out our api</Link> 
                 </div>
             </div>
         </>

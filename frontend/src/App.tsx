@@ -11,12 +11,12 @@ function App() {
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            const response = await fetch('http://localhost:8080/api/url/shorten', {
+            const response = await fetch('/api/url/shorten', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({url: url}),
+                body: JSON.stringify({originalUrl: url}),
             });
 
             if (!response.ok) {

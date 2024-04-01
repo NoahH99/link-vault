@@ -8,8 +8,6 @@ services:
       POSTGRES_DB: EXAMPLE
       POSTGRES_USER: EXAMPLE
       POSTGRES_PASSWORD: EXAMPLE
-    ports:
-      - "5432:5432"
     networks:
       - url-shortener-network
 
@@ -19,6 +17,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    depends_on:
+      - backend
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     networks:

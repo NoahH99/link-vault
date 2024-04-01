@@ -2,10 +2,7 @@
 
 ## Use Cases
 
-### Test
-#### Name
 
-#### Hello
 
 ## Progress Made
 

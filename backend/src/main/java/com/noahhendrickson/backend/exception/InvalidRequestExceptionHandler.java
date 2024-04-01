@@ -10,6 +10,6 @@ public class InvalidRequestExceptionHandler {
     @ExceptionHandler(value = {InvalidRequestException.class})
     public ResponseEntity<InvalidRequestExceptionDTO> handleInvalidRequestException(InvalidRequestException exception) {
         InvalidRequestExceptionDTO exceptionDTO = new InvalidRequestExceptionDTO(exception.getMessage());
-        return new ResponseEntity<>(exceptionDTO, exceptionDTO.getStatusCode());
+        return new ResponseEntity<>(exceptionDTO, exceptionDTO.getHttpStatus());
     }
 }

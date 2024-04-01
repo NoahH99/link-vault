@@ -3,9 +3,9 @@
 This is a simple tool for shortening long URLs into shorter, more manageable links. It allows users to generate short URLs that redirect to the original long URLs, making it easier to share links in emails, social media, or other platforms.
 
 ## Sprint Details
-- [Sprint 1](https://github.com/NoahH99/cmsc355-url-shortener/blob/develop/SPRINT1.md)
-- [Sprint 2](https://github.com/NoahH99/cmsc355-url-shortener/blob/develop/SPRINT2.md)
-- [Sprint 3](https://github.com/NoahH99/cmsc355-url-shortener/blob/develop/SPRINT3.md)
+- [Sprint 1](/SPRINT1.md)
+- [Sprint 2](/SPRINT2.md)
+- [Sprint 3](/SPRINT3.md)
 
 ## Features
 
@@ -138,7 +138,7 @@ The URL shortener application exposes the following API endpoints:
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/NoahH99/cmsc355-url-shortener/blob/master/LICENSE).
+This project is licensed under the [MIT License](/LICENSE).
 
 ```
 MIT License

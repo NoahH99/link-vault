@@ -1,8 +1,6 @@
 import './App.css'
 import {ChangeEvent, FormEvent, useState} from "react";
-import {
-    Link,
-  } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 interface ApiResponse {
     originalUrl: string,
@@ -30,7 +28,11 @@ function App() {
             await navigator.clipboard.writeText("localhost/" + data.shortCode);
 
             setUrl('')
-            setNotification('Copied to clipboard!');
+            setNotification('Short URL created! Copied to clipboard!');
+
+            setTimeout(() => {
+                setNotification(null);
+            }, 5000);
         } catch (error) {
             console.error('Error:', error);
             setNotification('Failed to shorten URL. Please try again.');
@@ -60,14 +62,14 @@ function App() {
                             <button type="submit">lets's go</button>
                         </div>
                     </form>
-                    {notification && (
-                        <div className="notification">
-                            <p>{notification}</p>
-                        </div>
-                    )}
                 </div>
+                {notification && (
+                    <div className="notification">
+                        <p>{notification}</p>
+                    </div>
+                )}
                 <div className="footer">
-                    <Link to="/info">check out our api</Link> 
+                    <Link to="/info">check out our api</Link>
                 </div>
             </div>
         </>

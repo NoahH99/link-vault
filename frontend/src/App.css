@@ -96,3 +96,8 @@ body, html {
 .form-inner button:hover {
     background-color: rgb(112, 112, 112, 0.3);
 }
+
+.notification {
+    display: flex;
+    justify-content: center;
+}

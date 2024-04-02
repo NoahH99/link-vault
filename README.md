@@ -3,9 +3,9 @@
 This is a simple tool for shortening long URLs into shorter, more manageable links. It allows users to generate short URLs that redirect to the original long URLs, making it easier to share links in emails, social media, or other platforms.
 
 ## Sprint Details
-- [Sprint 1](/SPRINT1.md)
-- [Sprint 2](/SPRINT2.md)
-- [Sprint 3](/SPRINT3.md)
+- [Sprint 1](/sprint-info/SPRINT1.md)
+- [Sprint 2](/sprint-info/SPRINT2.md)
+- [Sprint 3](/sprint-info/SPRINT3.md)
 
 ## Features
 

@@ -2,7 +2,10 @@
 
 ## Use Cases
 
-![Use Case 1](sprint-images/usecase1-1.png)
+![Use Case 1a](sprint-images/usecase1-1.png)
+![Use Case 1b](sprint-images/usecase1-2.png)
+
+![Use Case 2](sprint-images/usecase2.png)
 
 ## Progress Made
 

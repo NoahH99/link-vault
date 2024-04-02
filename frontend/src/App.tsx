@@ -23,12 +23,17 @@ function App() {
                 body: JSON.stringify({originalUrl: url}),
             });
 
-            const data: ApiResponse = await response.json();
+            if (!response.ok) {
+                setUrl('')
+                setNotification('Invalid URL');
+            } else {
+                const data: ApiResponse = await response.json();
 
-            await navigator.clipboard.writeText("localhost/" + data.shortCode);
+                await navigator.clipboard.writeText("localhost/" + data.shortCode);
 
-            setUrl('')
-            setNotification('Short URL created! Copied to clipboard!');
+                setUrl('')
+                setNotification('Short URL created! Copied to clipboard!');
+            }
 
             setTimeout(() => {
                 setNotification(null);

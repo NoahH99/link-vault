@@ -16,3 +16,7 @@ This phase of the project had a lot of devops, as we were focused on getting the
 Decision-making proved to be one of the largest sources of difficulty in this iteration of the project, as many decisions had to be made about what to include and what not to include, as well as about what platforms those features would be implemented with. A lot of learning had to be done in this stage about the technologies that would make up this project, and about how those may be integrated together in a larger system. 
 
 ## Test Cases
+
+![Test Case 1](sprint-images/testcase1.png)
+
+![Test Case 2](sprint-images/testcase2.png)

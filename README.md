@@ -30,13 +30,34 @@ To build and run the URL shortener application locally, follow these steps:
    cd cmsc355-url-shortener
    ```
    
-3. Run Docker Compose to build and start the containers:
+3. Edit the Docker Compose configuration file:
+
+    ```bash
+   cp docker-compose.example.yaml docker-compose.yaml
+    ```
+    Edit `docker-compose.yaml` with the necessary information for your setup.
+
+4. Edit the backend application configuration file:
+
+    ```bash
+   cp backend/src/main/resources/application.properties.example backend/src/main/resources/application.properties
+    ```
+   Edit `backend/src/main/resources/application.properties` with the appropriate configurations for your environment.
+
+5. Edit the backend test configuration file:
+
+    ```bash
+   cp backend/src/test/resources/application.properties.example backend/src/test/resources/application.properties
+    ```
+   Edit `backend/src/test/resources/application.properties` with the necessary configurations for your testing environment.
+
+6. Run Docker Compose to build and start the containers:
 
    ```bash
    docker-compose up --build
    ```
 
-4. Once the containers are up and running, you can access the application at `http://localhost`.
+7. Once the containers are up and running, you can access the application at `http://localhost`.
 
 
 ## Contributing

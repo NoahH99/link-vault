@@ -5,9 +5,9 @@ services:
     image: postgres:16.2-alpine
     restart: always
     environment:
-      POSTGRES_DB: EXAMPLE
-      POSTGRES_USER: EXAMPLE
-      POSTGRES_PASSWORD: EXAMPLE
+      POSTGRES_DB: url-shortener-db
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
     networks:
       - url-shortener-network
 
@@ -28,8 +28,6 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
     depends_on:
       - db
     networks:

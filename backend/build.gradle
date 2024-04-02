@@ -18,9 +18,9 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.postgresql:postgresql'
+    implementation 'org.postgresql:postgresql:42.7.3'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'com.h2database:h2'
+    testImplementation 'com.h2database:h2:2.1.214'
 }
 
 tasks.named('test') {
@@ -28,7 +28,6 @@ tasks.named('test') {
 }
 
 jar {
-    archiveFileName = 'url-shortener-backend.jar'
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
     manifest {
@@ -41,17 +40,3 @@ jar {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
-
-//tasks.register('fatJar', Jar) {
-//    archiveFileName = 'url-shortener-backend.jar'
-//
-//    manifest {
-//        attributes 'Main-Class': 'com.noahhendrickson.backend.BackendApplication'
-//    }
-//    archiveClassifier = "all"
-//    from {
-//        configurations.implementation.collect { it.isDirectory() ? it : zipTree(it) }
-//        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-//    }
-//    with jar
-//}

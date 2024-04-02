@@ -2,6 +2,11 @@
 
 This is a simple tool for shortening long URLs into shorter, more manageable links. It allows users to generate short URLs that redirect to the original long URLs, making it easier to share links in emails, social media, or other platforms.
 
+## Sprint Details
+- [Sprint 1](/SPRINT1.md)
+- [Sprint 2](/SPRINT2.md)
+- [Sprint 3](/SPRINT3.md)
+
 ## Features
 
 - Shorten long URLs into compact and manageable links
@@ -42,42 +47,83 @@ Contributions to the URL shortener application are welcome! If you find any issu
 
 The URL shortener application exposes the following API endpoints:
 
-### Shorten URL: `/api/shorten`
+### Shorten URL: `/api/url/shorten`
 - **Method:** `POST`
 - **Description:** Shortens a long URL and returns the shortened link.
 - **Request Body:**
    ```json
   {
-    "url": "https://example-long-url.com"
+    "originalUrl": "https://example-long-url.com",
+    "shortCode": "3zXFC", // Optional
+    "expirationDate": "YYYY-MM-DD HH:MM:SS" // Optional
   }
    ```
 - **Response Body:**
    ```json
   {
-    "url": "https://example-long-url.com",
-    "short-url": "http://localhost/3zXFC",
-    "short-code": "3zXFC",
-    "expiration-date": "YYYY-MM-DD HH:MM:SS"
+    "originalUrl": "https://example-long-url.com",
+    "shortCode": "3zXFC",
+    "expirationDate": "YYYY-MM-DD HH:MM:SS"
   }
    ```
 
-### Redirect Short URL: `/:short-code`
+### Redirect Short URL: `/api/url/:shortCode`
 - **Method:** `GET`
 - **Description:** Redirects to the original URL associated with the provided short link.
 
-### Get URL Stats: `/api/stats/:short-code`
+### Get Global Stats: `/api/url/analytics`
+- **Method:** `GET`
+- **Description:** Retrieves global statistics for the top 10 most clicked URLs.
+- **Response Body:**
+   ```json
+  {
+    "totalShortenedURLs": 2,
+    "totalClicks": 20,
+    "topClickedURLs": [
+      {
+        "originalUrl": "https://example-long-url.com",
+        "shortCode": "3zXFC",
+        "expirationDate": "YYYY-MM-DD HH:MM:SS",
+        "createdDate": "YYYY-MM-DD HH:MM:SS",
+        "lastAccessedDate": "YYYY-MM-DD HH:MM:SS",
+        "clicks": 15
+      },
+      {
+        "originalUrl": "https://another-example-long-url.com",
+        "shortCode": "example",
+        "expirationDate": "YYYY-MM-DD HH:MM:SS",
+        "createdDate": "YYYY-MM-DD HH:MM:SS",
+        "lastAccessedDate": "YYYY-MM-DD HH:MM:SS",
+        "clicks": 5
+      },
+      ...
+    ]
+  }
+   ```
+
+### Get URL Stats: `/api/url/analytics/:shortCode`
 - **Method:** `GET`
 - **Description:** Retrieves statistics for a shortened URL, including the number of clicks.
 - **Response Body:**
    ```json
   {
-    "url": "https://example-long-url.com",
-    "short-url": "http://localhost/3zXFC",
-    "short-code": "3zXFC",
-    "expiration-date": "YYYY-MM-DD HH:MM:SS",
-    "created-date": "YYYY-MM-DD HH:MM:SS",
-    "last-accessed-date": "YYYY-MM-DD HH:MM:SS",
+    "originalUrl": "https://example-long-url.com",
+    "shortCode": "3zXFC",
+    "expirationDate": "YYYY-MM-DD HH:MM:SS",
+    "createdDate": "YYYY-MM-DD HH:MM:SS",
+    "lastAccessedDate": "YYYY-MM-DD HH:MM:SS",
     "clicks": 5
+  }
+   ```
+
+
+### Get Health of Service: `/api/url/health`
+- **Method:** `GET`
+- **Description:** Gets the health of the service.
+- **Response Body:**
+   ```json
+  {
+    "status": 200
   }
    ```
   
@@ -92,7 +138,7 @@ The URL shortener application exposes the following API endpoints:
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/NoahH99/cmsc355-url-shortener/blob/master/LICENSE).
+This project is licensed under the [MIT License](/LICENSE).
 
 ```
 MIT License

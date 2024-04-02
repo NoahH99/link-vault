@@ -2,7 +2,7 @@
 
 ## Use Cases
 
-
+![Use Case 1](sprint-images/usecase1-1.png)
 
 ## Progress Made
 

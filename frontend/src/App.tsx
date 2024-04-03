@@ -15,7 +15,7 @@ function App() {
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            const response = await fetch('/api/url/shorten', {
+            const response = await fetch('/api/url-shortener/shorten', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

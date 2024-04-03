@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/url")
+@RequestMapping("/api/url-shortener")
 public class URLShortenerController {
 
     private final URLShortenerService shortenerService;

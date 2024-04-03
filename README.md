@@ -3,6 +3,7 @@
 This is a simple tool for shortening long URLs into shorter, more manageable links. It allows users to generate short URLs that redirect to the original long URLs, making it easier to share links in emails, social media, or other platforms.
 
 ## Sprint Details
+
 - [Sprint 1](/sprint-info/SPRINT1.md)
 - [Sprint 2](/sprint-info/SPRINT2.md)
 - [Sprint 3](/sprint-info/SPRINT3.md)
@@ -12,7 +13,6 @@ This is a simple tool for shortening long URLs into shorter, more manageable lin
 - Shorten long URLs into compact and manageable links
 - Customizable short links
 - Statistics tracking for shortened URLs
-
 
 ## Building and Running the Project Locally
 
@@ -29,26 +29,29 @@ To build and run the URL shortener application locally, follow these steps:
    ```bash
    cd cmsc355-url-shortener
    ```
-   
+
 3. Edit the Docker Compose configuration file:
 
-    ```bash
+   ```bash
    cp docker-compose.example.yaml docker-compose.yaml
-    ```
-    Edit `docker-compose.yaml` with the necessary information for your setup.
+   ```
+
+   Edit `docker-compose.yaml` with the necessary information for your setup.
 
 4. Edit the backend application configuration file:
 
-    ```bash
+   ```bash
    cp backend/src/main/resources/application.properties.example backend/src/main/resources/application.properties
-    ```
+   ```
+
    Edit `backend/src/main/resources/application.properties` with the appropriate configurations for your environment.
 
 5. Edit the backend test configuration file:
 
-    ```bash
+   ```bash
    cp backend/src/test/resources/application.properties.example backend/src/test/resources/application.properties
-    ```
+   ```
+
    Edit `backend/src/test/resources/application.properties` with the necessary configurations for your testing environment.
 
 6. Run Docker Compose to build and start the containers:
@@ -59,74 +62,77 @@ To build and run the URL shortener application locally, follow these steps:
 
 7. Once the containers are up and running, you can access the application at `http://localhost`.
 
-
 ## Contributing
-Contributions to the URL shortener application are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
+Contributions to the URL shortener application are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
 ## API Endpoints
 
 The URL shortener application exposes the following API endpoints:
 
 ### Shorten URL: `/api/url/shorten`
+
 - **Method:** `POST`
 - **Description:** Shortens a long URL and returns the shortened link.
 - **Request Body:**
-   ```json
+  ```json
   {
     "originalUrl": "https://example-long-url.com",
     "shortCode": "3zXFC", // Optional
     "expirationDate": "YYYY-MM-DD HH:MM:SS" // Optional
   }
-   ```
+  ```
 - **Response Body:**
-   ```json
+  ```json
   {
     "originalUrl": "https://example-long-url.com",
     "shortCode": "3zXFC",
     "expirationDate": "YYYY-MM-DD HH:MM:SS"
   }
-   ```
+  ```
 
 ### Redirect Short URL: `/api/url/:shortCode`
+
 - **Method:** `GET`
 - **Description:** Redirects to the original URL associated with the provided short link.
 
 ### Get Global Stats: `/api/url/analytics`
+
 - **Method:** `GET`
 - **Description:** Retrieves global statistics for the top 10 most clicked URLs.
 - **Response Body:**
-   ```json
+  ```json
   {
-    "totalShortenedURLs": 2,
-    "totalClicks": 20,
-    "topClickedURLs": [
-      {
-        "originalUrl": "https://example-long-url.com",
-        "shortCode": "3zXFC",
-        "expirationDate": "YYYY-MM-DD HH:MM:SS",
-        "createdDate": "YYYY-MM-DD HH:MM:SS",
-        "lastAccessedDate": "YYYY-MM-DD HH:MM:SS",
-        "clicks": 15
-      },
-      {
-        "originalUrl": "https://another-example-long-url.com",
-        "shortCode": "example",
-        "expirationDate": "YYYY-MM-DD HH:MM:SS",
-        "createdDate": "YYYY-MM-DD HH:MM:SS",
-        "lastAccessedDate": "YYYY-MM-DD HH:MM:SS",
-        "clicks": 5
-      },
-      ...
-    ]
+   "totalShortenedURLs": 2,
+   "totalClicks": 20,
+   "topClickedURLs": [
+     {
+       "originalUrl": "https://example-long-url.com",
+       "shortCode": "3zXFC",
+       "expirationDate": "YYYY-MM-DD HH:MM:SS",
+       "createdDate": "YYYY-MM-DD HH:MM:SS",
+       "lastAccessedDate": "YYYY-MM-DD HH:MM:SS",
+       "clicks": 15
+     },
+     {
+       "originalUrl": "https://another-example-long-url.com",
+       "shortCode": "example",
+       "expirationDate": "YYYY-MM-DD HH:MM:SS",
+       "createdDate": "YYYY-MM-DD HH:MM:SS",
+       "lastAccessedDate": "YYYY-MM-DD HH:MM:SS",
+       "clicks": 5
+     },
+     ...
+   ]
   }
-   ```
+  ```
 
 ### Get URL Stats: `/api/url/analytics/:shortCode`
+
 - **Method:** `GET`
 - **Description:** Retrieves statistics for a shortened URL, including the number of clicks.
 - **Response Body:**
-   ```json
+  ```json
   {
     "originalUrl": "https://example-long-url.com",
     "shortCode": "3zXFC",
@@ -135,27 +141,48 @@ The URL shortener application exposes the following API endpoints:
     "lastAccessedDate": "YYYY-MM-DD HH:MM:SS",
     "clicks": 5
   }
-   ```
-
+  ```
 
 ### Get Health of Service: `/api/url/health`
+
 - **Method:** `GET`
 - **Description:** Gets the health of the service.
 - **Response Body:**
-   ```json
+
+  ```json
   {
     "status": 200
   }
-   ```
-  
+  ```
+
+  ### User login: `/api/url/userAuth`
+
+- **Method:** `GET`
+- **Description:** Allow users to login using FastAPI and Google credentials
+- **Response Body:**
+
+  ```json
+  {
+  "success": true,
+  "data":{
+   "url": "{redirectURL}",
+   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+  }
+  },
+  {
+   "success": false,
+   "message": "Error authenticating user"
+   }
+
+  ```
 
 ## Additional Notes
+
 - Ensure that Docker and Docker Compose are installed on your system before running the application.
 - Customize the nginx configuration (`nginx.conf`) if necessary for your specific deployment needs.
 - Create a `docker-compose.yaml` file using the example provided (`docker-compose.example.yaml`).
 - Create an `application.properties` file using the example provided (`application.properties.example`).
 - For development purposes, the frontend and backend modules can be run independently outside of Docker containers. Instructions for setting up the development environment may vary based on your local setup.
-
 
 ## License
 

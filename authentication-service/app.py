@@ -45,5 +45,5 @@ async def auth(request: Request):
     except Exception as e:
         return JSONResponse(
             status_code=400,
-            content={"success": False, "message": "Error authenticating user", "error": str(e)}
+            content={"success": False, "message": "Error authenticating user"}
         )

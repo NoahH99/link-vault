@@ -1,17 +1,24 @@
-import { useState } from 'react';
+
+import { FormEvent, ChangeEvent, useState } from 'react';
 function Uploader() {
 
-    const handleUploadFiles = () => {
-        
+    const [files, setFiles] = useState<FileList | null>(null)
+
+    const handleUploadFiles = (event:FormEvent<HTMLFormElement>) => {
+        console.log(files);
+    }
+
+    const updateFiles = (event:ChangeEvent<HTMLInputElement>) => {
+        setFiles(event.target.files);
     }
 
 
     return (
         <>
             <div>Select Files to Upload</div>
-            <form>
-            <input type="file" id="upload" multiple name="filename"/>
-            <input type="submit" onSubmit={ handleUploadFiles }/>
+            <form onSubmit={ handleUploadFiles }>
+            <input type="file" id="upload" onChange={ updateFiles } multiple/>
+            <input type="submit"/>
             </form>
             
 
@@ -20,3 +27,4 @@ function Uploader() {
 }
 
 export default Uploader
+

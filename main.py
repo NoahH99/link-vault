@@ -1,37 +1,45 @@
-from datetime import datetime, timedelta, timezone
-from typing import Union
-import ntfy
-from fastapi import Depends, FastAPI, HTTPException, status, Request
-from fastapi.responses import HTMLResponse
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from jose import JWTError, jwt
-from passlib.context import CryptContext
-from pydantic import BaseModel
-from typing_extensions import Annotated
-import asyncio
-import json
-import csv
-from os import path
-import json
-import base64
-import ssl
-from turfpy import measurement as turfpyMeasure, transformation as turfpyTransform
-
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+from typing import List
+from fastapi import FastAPI, File, UploadFile
+import os
 
 app = FastAPI()
 
 
-@app.get("/api/file-storage",response_class=HTMLResponse)
-async def get_zones():
-    with open('HTML/redirect.html', 'r') as file:  # r to open file in READ mode
-        html_as_string = file.read()
+@app.post("/api/file-storage/upload/{linkName}")
+def upload(linkName,files: List[UploadFile] = File(...)):
+    for file in files:
+        try:
+            contents = file.file.read()
+            subdirectory = f"userFiles/{linkName}"
+            os.makedirs(subdirectory, exist_ok=True)
+            with open(f"userFiles/{linkName}/{file.filename}", 'wb') as f:
+                f.write(contents)
+        except Exception:
+            return {"message": "There was an error uploading the file(s)"}
+        finally:
+            file.file.close()
 
-    return html_as_string
+    return {"message": f"Successfuly uploaded {[file.filename for file in files]}"}    
 
-@app.get("/api/file-storage/test")
-async def get_zones():
-    return [{"Status": "Success", "Data": "Hello"}]
+
+@app.get("/api/file-storage/delete/{linkName}")
+async def sendFile(linkName):
+
+    path = f'userFiles/{linkName}'
+
+    def delete_directory(path):
+
+        for item in os.listdir(path):
+            item_path = os.path.join(path, item)
+
+            if os.path.isdir(item_path):
+                delete_directory(item_path)
+
+            else:
+                os.remove(item_path)
+
+        os.rmdir(path)
+
+    delete_directory(path)
+
+    return {"message": f"Successfuly deleted file link [ {linkName} ] from server."}

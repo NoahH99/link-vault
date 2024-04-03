@@ -3,6 +3,6 @@ from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
-@app.get("/api/file-storage/health")
+@app.get("/api/authentication/health")
 def health_check():
     return {"status": 200}

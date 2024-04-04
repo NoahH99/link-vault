@@ -18,13 +18,6 @@ services:
     networks:
       - url-shortener-network
 
-  authentication-service:
-    build:
-      context: ./authentication-service
-      dockerfile: Dockerfile
-    networks:
-      - url-shortener-network
-
   file-storage-service:
     build:
       context: ./file-storage-service

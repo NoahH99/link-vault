@@ -102,6 +102,6 @@ public class ShortenedURL {
     }
 
     public boolean isExpired() {
-        return expirationDate.isBefore(LocalDateTime.now());
+        return expirationDate != null && expirationDate.isBefore(LocalDateTime.now());
     }
 }

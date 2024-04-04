@@ -22,7 +22,7 @@ public class URLShortenerController {
         return shortenerService.shortenURL(request);
     }
 
-    @GetMapping("/{shortCode}")
+    @GetMapping("/s/{shortCode}")
     public ResponseEntity<?> redirectURL(@PathVariable String shortCode) {
         return shortenerService.redirectURL(shortCode);
     }

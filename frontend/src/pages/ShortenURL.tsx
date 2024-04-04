@@ -112,7 +112,7 @@ function ShortenURL() {
             {shortenedURL && (
                 <div className="alert alert-primary mt-3">
                     <p>Shortened URL:</p>
-                    <a href={shortenedURL} target="_blank" rel="noopener noreferrer">{domain}/{shortenedURL}</a>
+                    <a href={"s/" + shortenedURL} target="_blank" rel="noopener noreferrer">{domain}/s/{shortenedURL}</a>
                 </div>
             )}
         </div>

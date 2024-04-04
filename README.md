@@ -38,7 +38,11 @@ To build and run the URL shortener application locally, follow these steps:
 
    Edit `docker-compose.yaml` with the necessary information for your setup.
 
-4. Edit the backend application configuration file:
+4. Set Google Client ID:
+   - Obtain a Google Client ID from the Google Cloud Console. 
+   - Open the `docker-compose.yaml` file and set the `GOOGLE_CLIENT_ID` variable to the obtained Google Client ID.
+
+5. Edit the backend application configuration file:
 
    ```bash
    cp backend/src/main/resources/application.properties.example backend/src/main/resources/application.properties
@@ -46,7 +50,7 @@ To build and run the URL shortener application locally, follow these steps:
 
    Edit `backend/src/main/resources/application.properties` with the appropriate configurations for your environment.
 
-5. Edit the backend test configuration file:
+6. Edit the backend test configuration file:
 
    ```bash
    cp backend/src/test/resources/application.properties.example backend/src/test/resources/application.properties
@@ -54,13 +58,13 @@ To build and run the URL shortener application locally, follow these steps:
 
    Edit `backend/src/test/resources/application.properties` with the necessary configurations for your testing environment.
 
-6. Run Docker Compose to build and start the containers:
+7. Run Docker Compose to build and start the containers:
 
    ```bash
    docker-compose up --build
    ```
 
-7. Once the containers are up and running, you can access the application at `http://localhost`.
+8. Once the containers are up and running, you can access the application at `http://localhost`.
 
 ## Contributing
 

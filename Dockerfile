@@ -4,6 +4,9 @@ WORKDIR /frontend
 
 COPY frontend/package*.json ./
 
+ARG GOOGLE_CLIENT_ID
+ENV VITE_GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID
+
 RUN npm ci
 
 COPY frontend .

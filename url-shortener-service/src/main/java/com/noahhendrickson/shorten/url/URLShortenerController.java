@@ -1,9 +1,7 @@
 package com.noahhendrickson.shorten.url;
 
-import com.noahhendrickson.shorten.exception.InvalidRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -21,11 +19,7 @@ public class URLShortenerController {
 
     @PostMapping("/shorten")
     public ResponseEntity<URLShortenerDTO> shortenURL(@RequestBody URLShortenerDTO request) {
-        try {
-            return shortenerService.shortenURL(request);
-        } catch (HttpMessageNotReadableException exception) {
-            throw new InvalidRequestException(exception.getMessage());
-        }
+        return shortenerService.shortenURL(request);
     }
 
     @GetMapping("/{shortCode}")

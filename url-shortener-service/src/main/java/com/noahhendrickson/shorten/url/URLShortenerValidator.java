@@ -18,20 +18,22 @@ public class URLShortenerValidator {
         if (url == null) throw new InvalidRequestException("Request body cannot be null.");
 
         String originalUrl = url.getOriginalUrl();
-        if (originalUrl == null) throw new InvalidRequestException("originalUrl cannot be null.");
-        if (originalUrl.isBlank()) throw new InvalidRequestException("originalUrl cannot be blank.");
-        if (!isValidURL(originalUrl)) throw new InvalidRequestException("originalUrl must be a valid url.");
+        if (originalUrl == null) throw new InvalidRequestException("The URL cannot be null.");
+        if (originalUrl.isBlank()) throw new InvalidRequestException("The URL cannot be blank.");
+        if (!isValidURL(originalUrl)) throw new InvalidRequestException("The URL must be a valid url.");
 
         String shortCode = url.getShortCode();
         if (shortCode == null) shortCode = generateShortCode();
-        else if (repository.existsShortenedURLByShortCode(shortCode))
-            throw new InvalidRequestException("shortCode '" + shortCode + "' already exists.");
-        if (shortCode.isBlank()) throw new InvalidRequestException("shortCode cannot be blank.");
-        if (shortCode.length() > 30) throw new InvalidRequestException("hortCode cannot exceed 30 characters.");
+        if (repository.existsShortenedURLByShortCode(shortCode))
+            throw new InvalidRequestException("The short code '" + shortCode + "' already exists.");
+        if (shortCode.isBlank()) throw new InvalidRequestException("The short code cannot be blank.");
+        if (!isValidShortCode(shortCode))
+            throw new InvalidRequestException("The short code must only consist of alphanumeric characters, underscore, or hyphen.");
+        if (shortCode.length() > 30) throw new InvalidRequestException("The short code cannot exceed 30 characters.");
 
         LocalDateTime expirationDate = url.getExpirationDate();
         if (expirationDate != null && expirationDate.isBefore(LocalDateTime.now())) {
-            throw new InvalidRequestException("expirationDate cannot be in the past.");
+            throw new InvalidRequestException("Expiration date cannot be in the past.");
         }
 
         return shortCode;
@@ -52,6 +54,13 @@ public class URLShortenerValidator {
         String regex = "^https?://(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(url);
+        return matcher.matches();
+    }
+
+    private boolean isValidShortCode(String shortCode) {
+        String regex = "^[a-zA-Z0-9_-]{1,30}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(shortCode);
         return matcher.matches();
     }
 }

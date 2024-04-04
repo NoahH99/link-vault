@@ -31,7 +31,10 @@ public class URLShortenerService {
     public ResponseEntity<?> redirectURL(String shortCode) {
         ShortenedURL shortenedURL = shortenerRepository.findShortenedURLByShortCode(shortCode);
 
-        if (isShortenedURLNotFound(shortenedURL)) return ResponseEntity.notFound().build();
+        if (isShortenedURLNotFound(shortenedURL) || isOriginalURLNotFound(shortenedURL))
+            return ResponseEntity.notFound().build();
+        if (shortenedURL.isExpired())
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The shortened URL has expired.");
 
         updateStatistics(shortenedURL);
 
@@ -78,7 +81,11 @@ public class URLShortenerService {
     }
 
     private boolean isShortenedURLNotFound(ShortenedURL shortenedURL) {
-        return shortenedURL == null || shortenedURL.getOriginalUrl() == null;
+        return shortenedURL == null;
+    }
+
+    private boolean isOriginalURLNotFound(ShortenedURL shortenedURL) {
+        return shortenedURL.getOriginalUrl() == null;
     }
 
     private void updateStatistics(ShortenedURL url) {

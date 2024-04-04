@@ -16,11 +16,15 @@ public class InvalidRequestExceptionDTO {
 
     private final LocalDateTime timestamp;
 
-    public InvalidRequestExceptionDTO(String message) {
+    public InvalidRequestExceptionDTO(String message, HttpStatus httpStatus) {
         this.message = message;
-        this.httpStatus = HttpStatus.BAD_REQUEST;
+        this.httpStatus = httpStatus;
         this.statusCode = httpStatus.value();
         this.timestamp = LocalDateTime.now();
+    }
+
+    public InvalidRequestExceptionDTO(String message) {
+        this(message, HttpStatus.BAD_REQUEST);
     }
 
     public String getMessage() {

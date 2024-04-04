@@ -100,4 +100,8 @@ public class ShortenedURL {
     public void incrementClicksByOne() {
         setClicks(clicks + 1L);
     }
+
+    public boolean isExpired() {
+        return expirationDate.isBefore(LocalDateTime.now());
+    }
 }

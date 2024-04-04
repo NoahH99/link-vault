@@ -10,18 +10,10 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - authentication-service
       - file-storage-service
       - url-shortener-service
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
-    networks:
-      - url-shortener-network
-
-  authentication-service:
-    build:
-      context: ./authentication-service
-      dockerfile: Dockerfile
     networks:
       - url-shortener-network
 

@@ -1,35 +1,45 @@
 version: '3.8'
 
 services:
-  db:
+  frontend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        GOOGLE_CLIENT_ID: example.client.id.123
+    ports:
+      - "80:80"
+    depends_on:
+      - file-storage-service
+      - url-shortener-service
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - url-shortener-network
+
+  file-storage-service:
+    build:
+      context: ./file-storage-service
+      dockerfile: Dockerfile
+    networks:
+      - url-shortener-network
+
+  url-shortener-service:
+    build:
+      context: ./url-shortener-service
+      dockerfile: Dockerfile
+    depends_on:
+      - url-shortener-service-db
+    networks:
+      - url-shortener-network
+
+  url-shortener-service-db:
     image: postgres:16.2-alpine
     restart: always
     environment:
       POSTGRES_DB: url-shortener-db
       POSTGRES_USER: dev
       POSTGRES_PASSWORD: dev
-    networks:
-      - url-shortener-network
-
-  frontend:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    networks:
-      - url-shortener-network
-
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    depends_on:
-      - db
     networks:
       - url-shortener-network
 

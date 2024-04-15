@@ -16,5 +16,7 @@ In this sprint, we focused on two main new parts of the program, namely creating
 
 This phase included a pretty significant refactoring of the site, as instead of essentially being a single page application with some additional info pages, we had to create an authentication page, a page to choose which service you are going to use, and then separate pages for each of the services. This provided some more devops difficulties, and required more maneuvering in order to only allow certain things to users who were authenticated. Otherwise, the sprint went smoothly and we were able to get everything set up in the way that we wanted. 
 
+## UML Diagram
+
 ## Test Cases
 

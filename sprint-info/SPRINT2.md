@@ -18,6 +18,8 @@ This phase included a pretty significant refactoring of the site, as instead of 
 
 ## UML Diagram
 
+![Test Cases Sprint 2](sprint-images/uml-sprint2.png)
+
 ## Test Cases
 
 ![Test Cases Sprint 2](sprint-images/sprint2-testcases.png)

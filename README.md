@@ -195,6 +195,33 @@ The Link Vault application exposes the following API endpoints:
    }
    ```
 
+#### Flip Switches: `/api/flipswitch/{switchName}/{state}`
+
+- **Method:** `GET`
+- **Description:** Creates or modifies the state of {switchName} via modifier {state}.
+  {switchName} can be any string (excluding spaces and forward slashes.
+  {state} must be an number 0-4, which perform the following actions:
+    - ( 0 ) Set the {switchName} to False.
+    - ( 1 ) Set the {switchName} to True.
+    - ( 2 ) Toggle the {switchName} state.
+    - ( 3 ) Queries the {switchName} state, changing nothing.
+    - ( 4 ) Deletes the {switchName} switch
+- **Response Body:**
+   Success:
+   ```json
+   {
+      "Status": 200 ,
+      "State": flipSwitch_state
+   }
+   ```
+   Failure:
+   ```json
+   {
+      "Status": 406,
+      "Issue": "/api/flipswitch/[flipswitch]/[state]: state must be a number 0-4"
+   }
+   ```
+
 
 
 ## License

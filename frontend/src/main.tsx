@@ -22,6 +22,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                     <Route path='*' element={<NotFound/>}/>
                 </Routes>
             </BrowserRouter>
-        </React.StrictMode>,
+        </React.StrictMode>
     </GoogleOAuthProvider>
 )

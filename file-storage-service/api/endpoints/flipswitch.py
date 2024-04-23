@@ -10,7 +10,7 @@ def update_json_file(stateDict,filename):
         json.dump(stateDict, file)
 
 
-@router.get("/{flipswitch}/{state}")
+@router.get("/{flipSwitch}/{state}")
 async def switch(flipSwitch,state):
 
     try:
@@ -50,6 +50,5 @@ async def switch(flipSwitch,state):
     stateDict[title]['state'] = flipSwitch_state
     update_json_file(stateDict,"flipSwitches")
 
-    for key in stateDict:
-        print(str(key) + ": " + str(stateDict[key]))
-    return {"State": flipSwitch_state}
+
+    return {"Status": 200 ,"State": flipSwitch_state}

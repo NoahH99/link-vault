@@ -5,8 +5,13 @@ import os
 
 router = APIRouter()
 
+
+current_script_directory = os.path.dirname(os.path.abspath(__file__))
+json_folder_path = os.path.join(current_script_directory, 'JSON')
+json_file_path = os.path.join(json_folder_path, 'flipSwitches.json')
+
 def update_json_file(stateDict,filename):
-    with open(f"JSON/{filename}.json", "w") as file:
+    with open(f"{json_file_path}", "w") as file:
         json.dump(stateDict, file)
 
 
@@ -19,8 +24,8 @@ async def switch(flipSwitch,state):
         return {"Status": 406, "Issue": "/api/flipswitch/[flipswitch]/[state]: state must be a number 0-4"}
 
 
-    if os.path.exists("JSON/flipSwitches.json"):
-        with open("JSON/flipSwitches.json", "r") as file:
+    if os.path.exists(f"{json_file_path}"):
+        with open(f"{json_file_path}", "r") as file:
             stateDict = json.load(file)
     else:
         stateDict = {}

@@ -2,7 +2,8 @@
 
 ## Use Cases
 
-
+![Use Case 5a](sprint-images/usecase5-a.png)
+![Use Case 5b](sprint-images/usecase5-b.png)
 
 ## Progress Made
 
@@ -13,5 +14,7 @@ We focused on the flip switch functionality for this sprint, which we were able 
 This sprint, we focused on having people working on portions of the project they were less familiar with, so much of the difficulty of this sprint likely came down to parts of the project where members of the team were learning new functionality and working in languages and paradigms that they haven't worked in before. The implementation went relatively smoothly, though, and there was not a ton of difficulty in this sprint, especially compared to the more daunting implementations of the prior two sprints. 
 
 ## UML Diagram
+
+![UML Diagram](sprint-images/uml-diagram.png)
 
 ## Test Cases

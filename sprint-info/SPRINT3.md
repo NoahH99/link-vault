@@ -18,3 +18,5 @@ This sprint, we focused on having people working on portions of the project they
 ![UML Diagram](sprint-images/uml-diagram.png)
 
 ## Test Cases
+
+![Use Case 5 Test Case](sprint-images/testcase-5.png)
